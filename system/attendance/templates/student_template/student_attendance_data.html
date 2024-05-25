@@ -1,0 +1,38 @@
+{% extends 'student_template/base_template.html' %}
+{% block page_title %}
+Attendance Data
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+        <div class="card card-primary">
+            <div class="card-header">
+                <div class="card-header">
+                    <h3 class="card-title">Your Attendance Data</h3>
+                </div>
+                <div class="card card-body">
+                    <table>
+                        <thead style="color: black;">
+                            <td>Attendance Date</td>
+                            <td>Attendance Status</td>
+                        </thead>
+                        {% if attendance_reports %}
+                        {% for attendance_report in attendance_reports %}
+                        <tr style="color: rgb(139, 139, 139);">
+                            <td>{{ attendance_report.attendance_id.attendance_date }}</td>
+                            {% if attendance_report.status == True %}
+                                <td class="text-success">Present</td> 
+                            {% else %}
+                                <td class="text-danger">Absent</td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </table>
+                        {% else %}
+                            <div class="alert alert-danger text-center">No Attendance Data Found!</div>
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock main_content %}

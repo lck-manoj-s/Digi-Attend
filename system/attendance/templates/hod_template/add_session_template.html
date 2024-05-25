@@ -1,0 +1,47 @@
+{% extends "hod_template/base_template.html" %}
+{% block page_title %} 
+Add Programme Years
+{% endblock page_title %} 
+{% load static %}
+{% block main_content %}
+<section class="content">
+    <div class="container-fluid">
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Programme Years</h3>
+        </div>
+       
+        <form role="form" action="{% url 'add_session_save' %}" method="post">
+          {% csrf_token %}
+          <div class="card-body">
+            <div class="form-group">
+              <label>Programme Start</label>
+              <input type="date" class="form-control" name="SessionStart" placeholder="Enter Programme Start Date">
+            </div>
+            <div class="form-group">
+              <label>Programme End</label>
+              <input type="date" class="form-control" name="SessionEnd" placeholder="Enter Programme End Date">
+            </div>
+            <div class="form-group">
+              {% if messages %}
+                {% for message in messages %}
+                {% if message.tags == 'error' %}
+                <div class="alert alert-danger" style="margin-top: 15px; text-align: center;">{{ message }}</div>
+                {% endif %}
+
+                {% if message.tags == 'success' %}
+                <div class="alert alert-success" style="margin-top: 15px; text-align: center;">{{ message }}</div>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-primary btn-block">Add Programme Years</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock main_content%}

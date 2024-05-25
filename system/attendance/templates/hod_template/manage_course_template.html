@@ -1,0 +1,40 @@
+{% extends "hod_template/base_template.html" %}
+{% block page_title %} 
+Manage Course
+{% endblock page_title %} 
+{% load static %}
+{% block main_content %}
+<section class="content">
+    <div class="container-fluid">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Course Details</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Course Name</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for course in courses %}
+                    <tr>
+                      <td>{{ course.id }}</td>
+                      <td>{{ course.course_name }}</td>
+                      <td><a href="/edit_course/{{ course.id }}">Edit Course</a></td>
+                    </tr>
+                {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock main_content%}
